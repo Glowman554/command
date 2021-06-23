@@ -23,6 +23,14 @@ slot_list_node_t* slot_list_find_node(slot_list_t* list, slot_search_function f,
 	return 0;
 }
 
+void slot_list_transverse(slot_list_t* list, slot_transverse_function f) {
+	for (int i = 0; i < list->len; i++) {
+		if(list->nodes[i].is_taken) {
+			f(&list->nodes[i]);
+		}
+	}
+}
+
 void slot_list_remove_node(slot_list_t* list, slot_list_node_t* node) {
 	for (int i = 0; i < list->len; i++) {
 		if(&list->nodes[i] == node) {

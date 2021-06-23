@@ -19,10 +19,12 @@ typedef struct {
 
 
 typedef bool (*slot_search_function)(slot_list_node_t* node, void* d1, void* d2, void* d3, void* d4);
+typedef bool (*slot_transverse_function)(slot_list_node_t* node);
 
 EXPOSEC void slot_list_create(slot_list_t* list);
 EXPOSEC void slot_list_dispose(slot_list_t* list);
 
 EXPOSEC slot_list_node_t* slot_list_find_node(slot_list_t* list, slot_search_function f, void* d1, void* d2, void* d3, void* d4);
+EXPOSEC void slot_list_transverse(slot_list_t* list, slot_transverse_function f);
 EXPOSEC void slot_list_remove_node(slot_list_t* list, slot_list_node_t* node);
 EXPOSEC slot_list_node_t* slot_list_add_node(slot_list_t* list, void* d1, void* d2, void* d3, void* d4);
