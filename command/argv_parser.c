@@ -9,7 +9,7 @@ slot_list_t* parse_argv(int argc, char** argv) {
 
 	for (int i = 1; i < argc; i++) {
 		if(argv[i][0] == '-') {
-			if(i + 1 <= argc) {
+			if(i + 2 <= argc) {
 				if(argv[i + 1][0] == '-') { // only option without value
 					slot_list_add_node(list, argv[i], 0, 0, 0);
 				

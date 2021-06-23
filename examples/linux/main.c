@@ -1,8 +1,11 @@
 #include <command/buildin/slot_list.h>
 #include <command/buildin/linked_list.h>
 #include <command/argv_parser.h>
+#include <command/argv_splitter.h>
+#include <command/argv_count.h>
 #include <stdio.h>
 #include <stdlib.h>
+
 
 void enumerate(struct linked_list_node_t* node) {
 	printf("Node: 0x%x, %d\n", node, node->data);
@@ -45,15 +48,24 @@ int main(int argc, char** argv) {
 
 	linked_list_dispose(head);
 
-	char* test_argv[] = { "program_name", "-t", "-h", "hello", "-h", "-x", "-t", "test", "test2" };
+	char test[100] = "program_name value -h -x -help -v 1 some_val -idk";
 
-	slot_list_t* argv_list = parse_argv(8, test_argv);
+	char** test2 = argv_split(test);
+
+	int test3 = argv_count(test2);
+
+	for (int i = 0; i < test3; i++) {
+		printf("%s\n", test2[i]);
+	}
+
+	slot_list_t* argv_list = parse_argv(test3, test2);
 
 	slot_list_transverse(argv_list, (slot_transverse_function) print_nodes);
 
 	slot_list_dispose(argv_list);
 
 	free(argv_list);
+	free(test2);
 
 	return 0;
 }
