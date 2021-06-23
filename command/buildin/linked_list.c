@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <assert.h>
 
-struct linked_list_node_t* linked_list_list_create(uint64_t data, uint64_t data2, struct linked_list_node_t* next) {
+struct linked_list_node_t* linked_list_create(uint64_t data, uint64_t data2, struct linked_list_node_t* next) {
 	struct linked_list_node_t* new_node = command_malloc(sizeof(struct linked_list_node_t));
 
 	assert(new_node != NULL);
@@ -15,7 +15,7 @@ struct linked_list_node_t* linked_list_list_create(uint64_t data, uint64_t data2
 	return new_node;
 }
 
-void linked_list_list_traverse(struct linked_list_node_t* head, linked_list_callback f) {
+void linked_list_traverse(struct linked_list_node_t* head, linked_list_callback f) {
 	struct linked_list_node_t* cursor = head;
 
 	while(cursor != NULL) {
@@ -24,7 +24,7 @@ void linked_list_list_traverse(struct linked_list_node_t* head, linked_list_call
 	}
 }
 
-struct linked_list_node_t* linked_list_list_append(uint64_t data, uint64_t data2, struct linked_list_node_t* head) {
+struct linked_list_node_t* linked_list_append(uint64_t data, uint64_t data2, struct linked_list_node_t* head) {
 	struct linked_list_node_t* cursor = head;
 	struct linked_list_node_t* tmp = NULL;
 
@@ -33,13 +33,13 @@ struct linked_list_node_t* linked_list_list_append(uint64_t data, uint64_t data2
 		cursor = cursor->next;
 	}
 
-	struct linked_list_node_t* new_node = linked_list_list_create(data, data2, NULL);
+	struct linked_list_node_t* new_node = linked_list_create(data, data2, NULL);
 	tmp->next = new_node;
 
 	return head;
 }
 
-struct linked_list_node_t* linked_list_list_search(struct linked_list_node_t* head, uint64_t data) {
+struct linked_list_node_t* linked_list_search(struct linked_list_node_t* head, uint64_t data) {
 	struct linked_list_node_t* cursor = head;
 
 	while(cursor != NULL) {
@@ -53,7 +53,7 @@ struct linked_list_node_t* linked_list_list_search(struct linked_list_node_t* he
 	return NULL;
 }
 
-struct linked_list_node_t* linked_list_list_remove_front(struct linked_list_node_t* head) {
+struct linked_list_node_t* linked_list_remove_front(struct linked_list_node_t* head) {
 	if(head == NULL) {
 		return NULL;
 	}
@@ -70,7 +70,7 @@ struct linked_list_node_t* linked_list_list_remove_front(struct linked_list_node
 	return head;
 }
 
-struct linked_list_node_t* linked_list_list_remove_back(struct linked_list_node_t* head) {
+struct linked_list_node_t* linked_list_remove_back(struct linked_list_node_t* head) {
 	if(head->next == NULL || head == NULL) {
 		return NULL;
 	}
@@ -88,14 +88,14 @@ struct linked_list_node_t* linked_list_list_remove_back(struct linked_list_node_
 	return head;
 }
 
-struct linked_list_node_t* linked_list_list_remove(struct linked_list_node_t* head, struct linked_list_node_t* nd) {
+struct linked_list_node_t* linked_list_remove(struct linked_list_node_t* head, struct linked_list_node_t* nd) {
 	if(nd == head) {
-		head = linked_list_list_remove_front(head);
+		head = linked_list_remove_front(head);
 		return head;
 	}
 
 	if(nd->next == NULL) {
-		head = linked_list_list_remove_back(head);
+		head = linked_list_remove_back(head);
 		return head;
 	}
 
@@ -119,7 +119,7 @@ struct linked_list_node_t* linked_list_list_remove(struct linked_list_node_t* he
 	return head;
 }
 
-void linked_list_list_dispose(struct linked_list_node_t* head) {
+void linked_list_dispose(struct linked_list_node_t* head) {
 	struct linked_list_node_t* cursor;
 	struct linked_list_node_t* tmp;
 

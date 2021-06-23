@@ -18,4 +18,7 @@ clean:
 	@mkdir $(BUILDDIR)
 	@mkdir $(OBJDIR)
 
+test: build
+	$(BUILDDIR)/linux.elf
+
 .PHONY: build

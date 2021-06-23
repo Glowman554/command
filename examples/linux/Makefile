@@ -10,7 +10,7 @@ OBJS = $(patsubst %.c, $(OBJDIR)/%_$(OUTPUT).o, $(CPPSRC))
 
 
 CFLAGS = -mno-red-zone -ffreestanding -fpic -g -Iinclude -I../../command/include
-LDFLAGS = -fpic $(BUILDDIR)/libcommand.a
+LDFLAGS = -fpic
 
 CC = gcc
 LD = gcc
@@ -18,7 +18,7 @@ AR = ar
 
 $(OUTPUT): $(OBJS)
 	@echo LD $^
-	@$(LD) $(LDFLAGS) -o $(BUILDDIR)/$@ $^
+	@$(LD) $(LDFLAGS) -o $(BUILDDIR)/$@ $^ $(BUILDDIR)/libcommand.a
 
 $(OBJDIR)/%_$(OUTPUT).o: %.c
 	@echo "CC $^ -> $@"
