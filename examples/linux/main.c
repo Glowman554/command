@@ -6,7 +6,7 @@
 #include <command/argv_count.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#if 0
 void test1(int argc, char** argv) {
 	for (int i = 0; i < argc; i++) {
 		printf("%s\n", argv[i]);
@@ -32,6 +32,20 @@ int main(int argc, char** argv) {
 	run_command(&command_manager, "test2 hi hi2 hi3");
 	run_command(&command_manager, "test3 hi hi2 hi3");
 
+
+	return 0;
+}
+#endif
+
+int main() {
+	char test_args[100] = "program_name value -h -x -help -v 1 some_val -idk";
+	char** test_args_split = argv_split(test_args);
+	int argc = argv_count(test_args_split);
+
+	for (int i = 0; i < argc; i++) {
+		printf("%s\n", test_args_split[i]);
+
+	}
 
 	return 0;
 }
