@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
+		<script src="navbar.js" defer></script>
+		<!--<script src="background.js" defer></script>-->
+
+		<link href="style.css" rel="stylesheet">
+
+		<canvas style="display:none" id="canvas"></canvas>
+		<script>
+			const loader = async () => {
+				const params = new URLSearchParams(window.location.search);
+				const markdown = await fetch(window.location.origin + "/" + params.get("site") + ".md");
+				const markdown_text = await markdown.text();
+
+				const markdown_render = new showdown.Converter().makeHtml(markdown_text);
+
+				document.getElementById("markdown").innerHTML = markdown_render;
+
+				document.title = params.get("site");
+
+			};
+			loader();
+		</script>
+	</head>
+	<body style="font-family: Arial, Helvetica, sans-serif; color: white; background-color: #1f1f1f;">
+		<div id="markdown"></div>
+	</body>
+</html>
