@@ -1,7 +1,7 @@
 # Porting
 
 The general process of porting libcommand to other platforms is relatively easy.  
-The functions needed are: assert, memset, strlen, strcpy, command_malloc, command_free and command_realloc.
+The functions needed are: assert, memset, strlen, strcpy, command\_malloc, command\_free and command\_realloc.
 
 ## Memory allocation functions
 

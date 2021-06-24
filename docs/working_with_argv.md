@@ -1,11 +1,11 @@
 # Working with argv 
 
 This library includes a few functions to make the working with argv/argc easier.  
-This functions are: argv_count, parse_argv, argv_split.
+This functions are: argv\_count, parse\_argv, argv\_split.
 
-## argv_count
+## argv\_count
 
-argv_count is self explanatory: it counts how many arguments argv includes.
+argv\_count is self explanatory: it counts how many arguments argv includes.
 
 ```c
 int main() {
@@ -18,7 +18,7 @@ int main() {
 }
 ```
 
-## parse_argv
+## parse\_argv
 
 This function is way more complicated. It parses the argv array into a slot list. THe slot list contains different tokens with contain in node->data1 the option for example "-v". It also contains in node->data2 the value of the option if there is any.  
 Also note: this function allocates a slot list and also some storage to store this list you need to free that.
@@ -50,7 +50,7 @@ int main() {
 }
 ```
 
-## argv_split
+## argv\_split
 
 This function does exactly what it says it dose. It splits a string into an argv array.  
 Note: this function allocates memory with needs to be freed. The string will be written to. Every ' ' gets replaced with 0.
